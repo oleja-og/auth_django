@@ -5,31 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    {% block content %}
-    <div class="container">
-        <div class="grid-post">
-            <div class="text-center">
-                <form method="post">
-                    {% csrf_token %}
-                    {% for f in form %}
-                        <div class="row justify-content-center">
-                            <div class="col-2" for="{{ f.id_for_label }}"><br>
-                                {{ f.label }}:
-                            </div>
-                            <div class="col-2"><br>
-                               {{ f }}
-                            </div>
-                        </div><br>
-                        <div class="form-error">{{ f.errors }}</div>
-                    {% endfor %}
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <button type="submit" class="btn btn-warning">Регистрация</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+{% block content %}
 
-    </div>
+    <form method="post">
+        {% csrf_token %}
+        {% for f in form %}
+
+            {{ f.label }}:
+            {{ f }}<br>
+            {{ f.errors }}
+        {% endfor %}
+
+        <button type="submit">Регистрация
+        </button>
+
+    </form>
+
 {% endblock %}
 </body>
 </html>

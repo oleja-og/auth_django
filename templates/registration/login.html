@@ -1,51 +1,11 @@
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Log-in{% endblock %}
 {% block content %}
-    <h2>Вход</h2>
-    {% if user.is_authenticated %}
-        <div class="container">
-            <div class="grid-post">
-                <div class="text-center">
-                    <h3>Вы уже выполнили вход</h3>
-                </div>
-            </div>
-        </div>
-
-    {% else %}
-        <div class="container">
-            <div class="grid-post">
-                <div class="text-center">
-                    <form method="post">
-                        {% csrf_token %}
-                        {% for f in form %}
-                        <div class="row justify-content-center">
-                            <div class="col-2" for="{{ f.id_for_label }}"><br>
-                                {{ f.label }}:
-                            </div>
-                            <div class="col-2"><br>
-                                {{ f }}
-                            </div>
-                        </div><br>
-                        {% endfor %}
-                        <div class="form-error">{{ f.errors }}</div>
-                        <div class="col-xs-offset-2 col-xs-10">
-                            <button type="submit" class="btn btn-warning">Войти</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    {% endif %}
+    <h1>Log-in</h1>
+    <p>Please, use the following form to log-in:</p>
+    <form action="{% url 'login' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <p><input type="submit" value="Log-in"></p>
+    </form>
 {% endblock %}
-</body>
-</html>
-
-
